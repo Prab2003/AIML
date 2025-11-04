@@ -1,0 +1,85 @@
+4b) Hierarchical Clustering Algorithm on seeds_less_rows dataset for extracting cluster
+labels of different varieties of seeds
+
+#Extracting the cluster labels in heirarchial clustering
+#we use the fcluster() function to extract the cluster labels for intermediate clustering, and
+#compare the labels with the grain varieties using a cross-tabulation.
+
+Step 1 and 2: importing libraries and load the dataset:
+import pandas as pd
+seeds_df = pd.read_csv('seeds-less-rows.csv')
+# remove the grain species from the DataFrame, save for later
+varieties = list(seeds_df.pop('grain_variety'))
+# extract the measurements as a NumPy array
+samples = seeds_df.values
+
+Step 3: Run the hierarchical clustering of the grain samples
+fromscipy.cluster.hierarchy import linkage, dendrogram
+importmatplotlib.pyplot as plt
+mergings = linkage(samples, method='complete')
+dendrogram(mergings,labels=varieties,leaf_rotation=90,leaf_font_size=6)
+plt.show()
+
+Step 4: Import fcluster from scipy.cluster.hierarchy
+In[11]: from scipy.cluster.hierarchy import fcluster
+
+Step 5: Obtain a flat clustering by using the fcluster() function on mergings. Specify a
+maximum height of 6 and the keyword argument criterion='distance'. Assign the result to
+labels.
+In[12]: labels = fcluster(mergings, 6, criterion='distance')
+
+Step 6: Create a DataFramedf with two columns named 'labels' and 'varieties', using labels and
+varieties, respectively, for the column values.
+In[13]: df = pd.DataFrame({'labels': labels, 'varieties': varieties})
+
+Step 7: Create a cross-tabulation ct between df['labels'] and df['varieties'] to count the number
+of times each grain variety coincides with each cluster label.
+In[14]: ct = pd.crosstab(df['labels'], df['varieties'])
+
+Step 8: Display ct to see how your cluster labels correspond to the wheat varieties.
+In[15]: ct
+
+1a Conclusion: The simple linear regression model gives average accuracy depending on the
+R2 score value.
+
+1b Conclusion: Comparing the training and testing R^2 score values, the accuracy of the
+simple linear regression model with respect to this dataset is average.
+
+2a Conclusion: The accuracy of the multiple linear regression model is good depending on the R2
+score value.
+
+2b Conclusion: The multiple linear regression model accuracy is good with respect to this
+dataset by comparing R2 training and testing score values.
+
+3a Conclusion: Comparing Training and testing accuracy scores the accuracy of Decision Tree model is
+good. The Correctly classified tuples for training set is (286+169) and the misclassified
+tuples are zero.The correctly classified for training set is (71+36)and misclassified tuples
+are(7+0).
+
+3b Conclusion: The naïve bayes model is good with respect to breast cancer dataset by
+comparing the precision recall and F1 score values of training and testing dataset
+(classification report)
+
+4a Conclusion: The k-means clustering technique is applied to ch1ex1 dataset to form
+clusters depending on the number of clusters as input. Then the centroid of the clustering
+is shown using the cross mark.
+
+4b Conclusion: Three varieties of labels extracted from 'seeds-less-rows’ dataset by applying
+Hierarchical clustering technique as shown in the output table.
+
+5a Conclusion: Sigmoid or logistic function used to display the working of AND and NAND
+logic functions.
+
+5b Conclusion: Using open cv library of Neural Networks, faces are detected.
+
+6 Conclusion: Using Keras and Tensor flow framework loaded the Pima_indians_diabetes
+dataset and designed a two-layer neural network with one hidden layer and one output
+layer and generated predictions for 10 samples.
+
+7 Conclusion: Using Keras and tensor flow network loaded the mnist image dataset and
+designed a two-layer neural network with one hidden layer and one output layer using
+CNN with Leaky Relu activation function for the hidden layer.
+
+8 Conclusion: Using Keras and tensor flow network loaded the imdb text dataset and
+designed a two-layer neural network with one hidden layer and one output layer using
+simple RNN in the hidden layer.
