@@ -1,0 +1,23 @@
+
+
+Installed kernelspec tf_env in C:\Users\Prabhav Mishra\AppData\Roaming\jupyter\kernels\tf_env
+
+https://github.com/Prab2003/AIML.git
+
+python -m venv tf_env
+
+tf_env\Scripts\activate
+
+(tf_env) C:\Users\YourName>
+
+pip install tensorflow pandas numpy scikit-learn matplotlib
+
+python -c "import tensorflow as tf; print(tf.__version__)"
+
+2.17.0
+
+pip install ipykernel
+
+python -m ipykernel install --user --name=tf_env --display-name "TensorFlow Env"
+
+jupyter notebook
